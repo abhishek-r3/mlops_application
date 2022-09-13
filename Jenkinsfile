@@ -15,7 +15,8 @@ pipeline {
             }
             stage('Display Jenkins File') {
                 steps{
-                    sh 'cat Jenkinsfile'
+                    sh 'cat Jenkinsfile',
+                    sh 'whoami'
                 }
             }
             stage("Fix the permission issue") {
