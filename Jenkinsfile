@@ -1,6 +1,7 @@
 pipeline {
-    agent any
+    agent none
         stages {
+
             stage('Clone Repository') {
                 /* Cloning the repository for web application */
                 steps {
@@ -17,14 +18,20 @@ pipeline {
                     sh 'cat Jenkinsfile'
                 }
             }
+            stage("Fix the permission issue") {
+                agent any
+                steps {
+                    sh "sudo chown root:jenkins /run/docker.sock"
+                }
+            }
             stage('Build Image') {
                 steps{
-                    sh "docker build --user='jenkins' -t drug-per-app:v1 src/app"
+                    sh "sudo docker build --user='jenkins' -t drug-per-app:v1 src/app"
                 }
             }
             stage('Run Docker Image'){
                 steps {
-                sh "docker run --user='jenkins' -d -p 5000:5000 --name drug-per-app drug-per-app:v1"
+                sh "sudo docker run --user='jenkins' -d -p 5000:5000 --name drug-per-app drug-per-app:v1"
                 }
             }
             stage("Testing"){
