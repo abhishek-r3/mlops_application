@@ -17,7 +17,7 @@ pipeline {
                 sh 'sudo docker run -d -p 5000:5000 --name drug-per-app drug-per-app:v1'
                 }
             }
-            Stage("Testing"){
+            stage("Testing"){
                 steps {
                     echo 'Testing.....'
 
