@@ -9,12 +9,12 @@ pipeline {
             }
             stage('Build Image') {
                 steps{
-                    sh 'sudo docker build -t drug-per-app:v1 src/app'
+                    sh 'docker build -t drug-per-app:v1 src/app'
                 }
             }
             stage('Run Docker Image'){
                 steps {
-                sh 'sudo docker run -d -p 5000:5000 --name drug-per-app drug-per-app:v1'
+                sh 'docker run -d -p 5000:5000 --name drug-per-app drug-per-app:v1'
                 }
             }
             stage("Testing"){
