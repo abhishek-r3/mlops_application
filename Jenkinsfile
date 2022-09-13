@@ -1,5 +1,5 @@
 pipeline {
-    agent any {
+    agent any
         stages {
             stage('Clone Repository') {
                 /* Cloning the repository for web application */
@@ -24,5 +24,4 @@ pipeline {
                 }
             }
         }
-    }
 }
