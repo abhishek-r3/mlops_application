@@ -12,19 +12,19 @@ pipeline {
                     sh 'ls'
                 }
             }
-            stage('Doc') {
+            stage('Display Jenkins File') {
                 steps{
-                    sh 'apt-get install docker'
+                    sh 'cat Jenkinsfile'
                 }
             }
             stage('Build Image') {
                 steps{
-                    sh 'docker build -t drug-per-app:v1 src/app'
+                    sh "docker build --user='jenkins' -t drug-per-app:v1 src/app"
                 }
             }
             stage('Run Docker Image'){
                 steps {
-                sh 'docker run -d -p 5000:5000 --name drug-per-app drug-per-app:v1'
+                sh "docker run --user='jenkins' -d -p 5000:5000 --name drug-per-app drug-per-app:v1"
                 }
             }
             stage("Testing"){
