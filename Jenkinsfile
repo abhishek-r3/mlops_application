@@ -7,6 +7,16 @@ pipeline {
                     checkout scm
                 }
             }
+            stage('Verify') {
+                steps{
+                    sh 'ls'
+                }
+            }
+            stage('Doc') {
+                steps{
+                    sh 'apt-get install docker'
+                }
+            }
             stage('Build Image') {
                 steps{
                     sh 'docker build -t drug-per-app:v1 src/app'
