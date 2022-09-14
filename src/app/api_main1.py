@@ -132,11 +132,8 @@ def predict_page():
     #input_for_prediction = {'data' : [[0, 2, 2, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1]]}
     #print(input_for_prediction)
 
-    #end_point = "http://1daa2355-5f05-44e0-a4a2-df7d636e9216.eastus2.azurecontainer.io/score"
-    #predictions = end_point_predictions(end_point, input_for_prediction)
-    model = joblib.load('models/rfrandomisedscv.pkl')
-    predictions = model.predict(input_for_prediction['data'])
-    
+    end_point = "http://1daa2355-5f05-44e0-a4a2-df7d636e9216.eastus2.azurecontainer.io/score"
+    predictions = end_point_predictions(end_point, input_for_prediction)
     print(predictions, "END POINT PREDICTIONS")
     data = dict(data)
     data["PERSISTENCY PREDICTION RESULT"] = presistecy_flag_mapper[int(predictions)]
