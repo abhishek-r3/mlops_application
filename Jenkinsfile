@@ -10,7 +10,7 @@ pipeline {
             }
 	    stage('Verify The Clone') {
                 steps{
-                    sh 'sudo ls'
+                    sh 'ls'
                 }
             }
             stage('Verify The Steps') {
